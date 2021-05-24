@@ -1,0 +1,26 @@
+{
+  "name": "com.potatointeractive.localization",
+  "version": "0.1.0",
+  "displayName": "PotatoLocalization",
+  "description": "Potato Interactive's Unity/C# Localization package",
+  "unity": "2019.4",
+  "type": "utilities",
+  "dependencies": {
+    "com.beauprime.beaudata": "0.3.0",
+    "com.potatointeractive.pcg": "1.1.0",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.unitywebrequestwww": "1.0.0"
+  },
+  "keywords": [
+    "Unity", "localization"
+  ],
+  "author": {
+    "name": "Terra Lauterbach",
+    "email": "potatointeractive@gmail.com",
+    "url": "https://rottentater.com/"
+  },
+  "publishConfig": {
+    "registry": "https://package.openupm.com"
+  }
+}
