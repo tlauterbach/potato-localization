@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PotatoLocalization {
 
 
-	[RequireComponent(typeof(TextMeshPro))]
+	[RequireComponent(typeof(TextMeshProUGUI))]
 	public class LocalizedTextUGUI : LocalizedTextBase {
 
 		private TextMeshProUGUI m_component;
