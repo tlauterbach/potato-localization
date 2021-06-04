@@ -1,6 +1,9 @@
 ﻿using BeauData;
 using PotatoUtil;
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace PotatoLocalization {
@@ -14,7 +17,7 @@ namespace PotatoLocalization {
 
 		[SerializeField]
 		private string m_key;
-
+		[SerializeField]
 		private FNVHash m_hash;
 
 
@@ -38,6 +41,25 @@ namespace PotatoLocalization {
 			m_key = inValue;
 			m_hash = new FNVHash(string.Concat(OFFSET, m_key));
 		}
+
+		#if UNITY_EDITOR
+
+		[CustomPropertyDrawer(typeof(LocalizationKey))]
+		private class Editor : PropertyDrawer {
+			public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+				SerializedProperty key = property.FindPropertyRelative("m_key");
+				key.stringValue = EditorGUI.TextField(position, label, key.stringValue);
+				property.FindPropertyRelative("m_hash").FindPropertyRelative("m_hash").intValue = new FNVHash(string.Concat(OFFSET, key.stringValue));
+				property.serializedObject.ApplyModifiedProperties();
+			}
+			public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+				return EditorGUIUtility.singleLineHeight;
+			}
+		}
+
+		#endif
+
+
 	}
 
 }
