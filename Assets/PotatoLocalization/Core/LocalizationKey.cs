@@ -18,16 +18,15 @@ namespace PotatoLocalization {
 		[SerializeField]
 		private string m_key;
 		[SerializeField]
-		private FNVHash m_hash;
-
+		private int m_hash;
 
 		public LocalizationKey(string key) {
 			m_key = key;
-			m_hash = new FNVHash(string.Concat(OFFSET, m_key));
+			m_hash = Hash(m_key);
 		}
 
 		public bool Equals(LocalizationKey other) {
-			return GetHashCode() == other.GetHashCode();
+			return m_hash == other.m_hash;
 		}
 		public override int GetHashCode() {
 			return m_hash;
@@ -39,25 +38,44 @@ namespace PotatoLocalization {
 
 		public void SetProxyValue(string inValue, ISerializerContext inContext) {
 			m_key = inValue;
-			m_hash = new FNVHash(string.Concat(OFFSET, m_key));
+			m_hash = Hash(m_key);
 		}
 
-		#if UNITY_EDITOR
+		public override string ToString() {
+			return m_key;
+		}
+
+		private static int Hash(string str) {
+			if (string.IsNullOrEmpty(str)) {
+				return 0;
+			} else {
+				return new FNVHash(string.Concat(OFFSET, str));
+			}
+		}
+
+
+#if UNITY_EDITOR
 
 		[CustomPropertyDrawer(typeof(LocalizationKey))]
 		private class Editor : PropertyDrawer {
 			public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
 				SerializedProperty key = property.FindPropertyRelative("m_key");
+				SerializedProperty hash = property.FindPropertyRelative("m_hash");
+
+				EditorGUI.BeginChangeCheck();
 				key.stringValue = EditorGUI.TextField(position, label, key.stringValue);
-				property.FindPropertyRelative("m_hash").FindPropertyRelative("m_hash").intValue = new FNVHash(string.Concat(OFFSET, key.stringValue));
-				property.serializedObject.ApplyModifiedProperties();
+				if (EditorGUI.EndChangeCheck()) {
+					hash.intValue = Hash(key.stringValue);
+					property.serializedObject.ApplyModifiedProperties();
+					Debug.Log(hash.intValue);
+				}
 			}
 			public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
 				return EditorGUIUtility.singleLineHeight;
 			}
 		}
 
-		#endif
+#endif
 
 
 	}
