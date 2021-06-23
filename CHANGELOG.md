@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2021-06-23
+### Fixed
+- Removed constant logging of LocalizationKey hash
+- Missing keys are now properly displayed
+
 ## [0.2.3] - 2021-06-11
 ### Fixed
 - Hash value of `LocalizationKey` now creates and serializes itself properly

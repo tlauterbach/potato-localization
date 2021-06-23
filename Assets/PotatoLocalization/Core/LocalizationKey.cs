@@ -67,7 +67,6 @@ namespace PotatoLocalization {
 				if (EditorGUI.EndChangeCheck()) {
 					hash.intValue = Hash(key.stringValue);
 					property.serializedObject.ApplyModifiedProperties();
-					Debug.Log(hash.intValue);
 				}
 			}
 			public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {

@@ -33,7 +33,7 @@ namespace PotatoLocalization {
 		[NonSerialized]
 		private Dictionary<LocalizationKey, string> m_map;
 
-		private const string NULL_FORMAT = "[0]";
+		private const string NULL_FORMAT = "[{0}]";
 
 		/// <summary>
 		/// Returns text represented by the given localization 
@@ -49,7 +49,7 @@ namespace PotatoLocalization {
 			if (m_map.ContainsKey(key)) {
 				return m_map[key];
 			} else {
-				return string.Format(NULL_FORMAT, key);
+				return string.Format(NULL_FORMAT, key.ToString());
 			}		
 		}
 

@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd0ed76c42160b43a70e52e808a5bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 726b7f5af4d1283499115eab656d413d, type: 3}
   m_Name: TestEnglishMap
   m_EditorClassIdentifier: 
   m_languageCode:
-    m_code: en
-  m_keys: []
+    m_code: es
+  m_keys:
+  - m_key: 
+    m_hash: 0
   m_values: []
