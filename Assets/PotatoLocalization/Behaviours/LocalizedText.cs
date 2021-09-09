@@ -16,6 +16,9 @@ namespace PotatoLocalization {
 		}
 
 		protected override void RefreshText() {
+			if (m_component == null) {
+				m_component = GetComponent<TextMeshPro>();
+			}
 			m_component.text = LocalizationMgr.GetText(Key);
 		}
 
