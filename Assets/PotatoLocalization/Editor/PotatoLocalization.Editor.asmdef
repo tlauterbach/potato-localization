@@ -1,0 +1,17 @@
+{
+    "name": "PotatoLocalization.Editor",
+    "references": [
+        "GUID:d74eaf679c909e748b39679e510c8ef6"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

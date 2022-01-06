@@ -26,9 +26,9 @@ namespace PotatoLocalization {
 		private LanguageCode m_languageCode = new LanguageCode("en");
 
 		[SerializeField]
-		private LocalizationKey[] m_keys = null;
+		private List<LocalizationKey> m_keys = new List<LocalizationKey>();
 		[SerializeField]
-		private string[] m_values = null;
+		private List<string> m_values = new List<string>();
 
 		[NonSerialized]
 		private Dictionary<LocalizationKey, string> m_map;
@@ -42,7 +42,7 @@ namespace PotatoLocalization {
 		public string GetText(LocalizationKey key) {
 			if (m_map == null) {
 				m_map = new Dictionary<LocalizationKey, string>();
-				for (int ix = 0; ix < m_keys.Length; ix++) {
+				for (int ix = 0; ix < m_keys.Count; ix++) {
 					m_map.Add(m_keys[ix], m_values[ix]);
 				}
 			}
@@ -50,7 +50,7 @@ namespace PotatoLocalization {
 				return m_map[key];
 			} else {
 				return string.Format(NULL_FORMAT, key.ToString());
-			}		
+			}
 		}
 
 		/// <summary>
@@ -63,6 +63,23 @@ namespace PotatoLocalization {
 			m_map.Clear();
 			m_map = null;
 		}
+
+#if UNITY_EDITOR
+
+		public void Add(LocalizationKey key, string value) {
+			m_keys.Add(key);
+			m_values.Add(value);
+		}
+
+		public void Clear() {
+			if (m_map != null) {
+				m_map.Clear();
+			}
+			m_keys.Clear();
+			m_values.Clear();
+		}
+
+#endif
 
 
 	}
