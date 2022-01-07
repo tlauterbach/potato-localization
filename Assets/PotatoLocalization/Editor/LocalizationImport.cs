@@ -125,6 +125,7 @@ namespace PotatoLocalization.Editor {
 					}
 					LocalizationMap asset = GetAsset(all, table[column,0], m_exportFolder);
 					asset.Clear();
+					EditorUtility.SetDirty(asset);
 					for (int row = 1; row < table.Height; row++) {
 						if (string.IsNullOrEmpty(table[0,row])) {
 							continue;
