@@ -53,6 +53,16 @@ namespace PotatoLocalization {
 			}
 		}
 
+		public bool ContainsKey(LocalizationKey key) {
+			if (m_map == null) {
+				m_map = new Dictionary<LocalizationKey, string>();
+				for (int ix = 0; ix < m_keys.Count; ix++) {
+					m_map.Add(m_keys[ix], m_values[ix]);
+				}
+			}
+			return m_map.ContainsKey(key);
+		}
+
 		/// <summary>
 		/// Use to clear usage of the runtime localization map.
 		/// Useful if you support multiple languages and need

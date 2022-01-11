@@ -43,6 +43,9 @@ namespace PotatoLocalization {
 			return Instance.m_currentMap[key];
 		}
 
+		public static bool ContainsKey(LocalizationKey key) {
+			return Instance.m_currentMap.ContainsKey(key);
+		}
 
 		protected override void OnAwake() {
 			m_currentMap = FindLanguageMap(m_currentLanguage);
